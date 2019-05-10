@@ -1,0 +1,25 @@
+version: "3"
+services:
+  db:
+    image: mongo:3.4
+    volumes:
+      - .mongodb:/data/db
+
+  api:
+    build: gastronomic-evaluations-api/docker
+    volumes:
+      - ./gastronomic-evaluations-api:/gastronomic-evaluations-api
+    ports:
+      - 5000:5000
+    depends_on:
+     - db
+
+  front:
+    build: gastronomic-evaluations-front/docker
+    volumes:
+      - ./gastronomic-evaluations-front:/gastronomic-evaluations-front
+    ports:
+      - 5001:5001
+    depends_on:
+      - api
+
