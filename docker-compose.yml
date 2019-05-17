@@ -14,6 +14,13 @@ services:
     depends_on:
      - db
 
+  api-gateway:
+    build: gastronomic-evaluations-api-gateway/docker
+    volumes:
+      - ./gastronomic-evaluations-api-gateway:/gastronomic-evaluations-api-gateway
+    ports:
+      - 5500:5500
+
   front:
     build: gastronomic-evaluations-front/docker
     volumes:
