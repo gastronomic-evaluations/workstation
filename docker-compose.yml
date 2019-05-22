@@ -21,6 +21,13 @@ services:
     ports:
       - 5500:5500
 
+  users-api:
+    build: gastronomic-evaluations-users-api/docker
+    volumes:
+      - ./gastronomic-evaluations-users-api:/gastronomic-evaluations-users-api
+    ports:
+      - 5003:5003
+
   front:
     build: gastronomic-evaluations-front/docker
     volumes:
