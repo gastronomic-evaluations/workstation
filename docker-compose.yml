@@ -5,10 +5,10 @@ services:
     volumes:
       - .mongodb:/data/db
 
-  api:
-    build: gastronomic-evaluations-api/docker
+  restaurants-api:
+    build: restaurants-api/docker
     volumes:
-      - ./gastronomic-evaluations-api:/gastronomic-evaluations-api
+      - ./restaurants-api:/restaurants-api
     ports:
       - 5000:5000
     depends_on:
@@ -35,5 +35,5 @@ services:
     ports:
       - 5001:5001
     depends_on:
-      - api
+      - restaurants-api
 
