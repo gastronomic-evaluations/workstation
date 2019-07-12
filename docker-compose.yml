@@ -28,10 +28,10 @@ services:
     ports:
       - 5003:5003
 
-  front:
-    build: gastronomic-evaluations-front/docker
+  restaurants-front:
+    build: restaurants-front/docker
     volumes:
-      - ./gastronomic-evaluations-front:/gastronomic-evaluations-front
+      - ./restaurants-front:/restaurants-front
     ports:
       - 5001:5001
     depends_on:
