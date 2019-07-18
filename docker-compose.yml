@@ -15,11 +15,13 @@ services:
      - db
 
   api-gateway:
-    build: gastronomic-evaluations-api-gateway/docker
+    build: api-gateway/docker
     volumes:
-      - ./gastronomic-evaluations-api-gateway:/gastronomic-evaluations-api-gateway
+      - ./api-gateway:/api-gateway
     ports:
       - 5500:5500
+    depends_on:
+      - restaurants-api
 
   users-api:
     build: gastronomic-evaluations-users-api/docker
@@ -35,5 +37,5 @@ services:
     ports:
       - 5001:5001
     depends_on:
-      - restaurants-api
+      - api-gateway
 
