@@ -1,9 +1,11 @@
-.PHONY: all start download
+.PHONY: setup reset download
 
-all: start
+setup: download
+	docker-compose up -d --build
 
-start: download
-	docker-compose up -d
+reset:
+	docker-compose down
+	rm -rf api-gateway landingpage restaurants-api restaurants-front
 
 download:
 	git clone git@github.com:gastronomic-evaluations/restaurants-api.git
