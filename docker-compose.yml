@@ -29,8 +29,6 @@ services:
       - ./api-gateway:/api-gateway
     ports:
       - 5500:5500
-    depends_on:
-      - restaurants-api
 
   users-api:
     build: users-api/docker
@@ -38,6 +36,14 @@ services:
       - ./users-api:/users-api
     ports:
       - 5003:5003
+    depends_on:
+      - api-gateway
+      - users-db
+
+  users-db:
+    image: mongo:3.4
+    volumes:
+      - .users-db:/data/db
 
   restaurants-front:
     build: restaurants-front/docker

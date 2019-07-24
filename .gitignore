@@ -3,3 +3,4 @@ api-gateway
 users-api
 landingpage
 .mongodb
+.users-db
