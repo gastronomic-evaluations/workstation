@@ -2,5 +2,5 @@ restaurants-*
 api-gateway
 users-api
 landingpage
-.mongodb
+.restaurants-db
 .users-db

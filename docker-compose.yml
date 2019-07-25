@@ -1,9 +1,9 @@
 version: "3"
 services:
-  db:
+  restaurants-db:
     image: mongo:3.4
     volumes:
-      - .mongodb:/data/db
+      - .restaurants-db:/data/db
 
   restaurants-api:
     build: restaurants-api/docker
@@ -12,7 +12,17 @@ services:
     ports:
       - 5000:5000
     depends_on:
-     - db
+     - restaurants-db
+
+  restaurants-front:
+    build: restaurants-front/docker
+    volumes:
+      - ./restaurants-front:/restaurants-front
+    ports:
+      - 5001:5001
+    depends_on:
+      - restaurants-api
+      - api-gateway
 
   landingpage:
     build: landingpage/docker
@@ -44,13 +54,3 @@ services:
     image: mongo:3.4
     volumes:
       - .users-db:/data/db
-
-  restaurants-front:
-    build: restaurants-front/docker
-    volumes:
-      - ./restaurants-front:/restaurants-front
-    ports:
-      - 5001:5001
-    depends_on:
-      - api-gateway
-
