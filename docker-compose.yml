@@ -22,7 +22,6 @@ services:
       - 5001:5001
     depends_on:
       - restaurants-api
-      - api-gateway
 
   landingpage:
     build: landingpage/docker
@@ -30,27 +29,3 @@ services:
       - ./landingpage:/landingpage
     ports:
       - 5002:5002
-    depends_on:
-     - api-gateway
-
-  api-gateway:
-    build: api-gateway/docker
-    volumes:
-      - ./api-gateway:/api-gateway
-    ports:
-      - 5500:5500
-
-  users-api:
-    build: users-api/docker
-    volumes:
-      - ./users-api:/users-api
-    ports:
-      - 5003:5003
-    depends_on:
-      - api-gateway
-      - users-db
-
-  users-db:
-    image: mongo:3.4
-    volumes:
-      - .users-db:/data/db

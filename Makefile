@@ -3,13 +3,17 @@
 setup: download
 	docker-compose up -d --build
 
+logs:
+	docker-compose logs -f
+
 reset:
 	docker-compose down
-	rm -rf api-gateway landingpage restaurants-api restaurants-front users-api
+	rm -rf landingpage restaurants-api restaurants-front
 
 download:
 	git clone git@github.com:gastronomic-evaluations/restaurants-api.git
 	git clone git@github.com:gastronomic-evaluations/restaurants-front.git
-	git clone git@github.com:gastronomic-evaluations/api-gateway.git
 	git clone git@github.com:gastronomic-evaluations/landingpage.git
-	git clone git@github.com:gastronomic-evaluations/users-api.git
+
+dev:
+	docker-compose up -d
